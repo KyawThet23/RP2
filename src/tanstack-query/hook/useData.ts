@@ -5,12 +5,16 @@ interface FetchResponse<T> {
   results: T[];
 }
 
-const useData = <T>(endPoint: string, key: string) => {
+const useData = <T>(endPoint: string, key: string , id: number | undefined) => {
   const fetchDatas = () =>
-    axios.get<FetchResponse<T>>(endPoint).then((res) => res.data);
+    axios.get<FetchResponse<T>>(endPoint , {
+      params: {
+        id
+      }
+    }).then((res) => res.data);
 
   return useQuery<FetchResponse<T>, Error>({
-    queryKey: [key],
+    queryKey: id? ['users',id,key] : [key],
     queryFn: fetchDatas,
     retry: 3,
     cacheTime: 300_000, // 5 minutes
