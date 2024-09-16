@@ -1,5 +1,7 @@
-import axios from "axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import APIClinet from "../services/apiClient";
+
+const apiClient = new APIClinet<Todo>('/todos')
 
 export interface Todo {
   id: number;
@@ -13,19 +15,10 @@ interface PostQuery {
 }
 
 const useTodo = (query: PostQuery) => {
-  const fetchDatas = ({pageParam = 1}) =>
-    axios
-      .get<Todo[]>("https://jsonplaceholder.typicode.com/todos" , {
-        params: {
-          _start: (pageParam - 1) * query.pageSize,
-          _limit: query.pageSize
-        }
-      })
-      .then((res) => res.data);
 
   return useInfiniteQuery<Todo[], Error>({
     queryKey: ["todos" , query],
-    queryFn: fetchDatas,
+    queryFn: apiClient.getAll,
     retry: 3,
     cacheTime: 300_000, // 5 minutes
     staleTime: 10 * 1000, // 10 seconds
