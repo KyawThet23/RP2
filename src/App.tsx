@@ -1,15 +1,16 @@
 import "./App.css";
-import TodoList from "./tanstack-query/todo-list";
-import TodoForm from "./tanstack-query/TodoForm";
+import TaskList from "./state-management/TaskList";
 
 function App() {
   return (
     <>
       {/* <h3>Post</h3>
       <PostList /> */}
-      <TodoForm />
+      {/* <TodoForm />
       <h3>Todo</h3>
-      <TodoList />
+      <TodoList /> */}
+      {/* <Counter /> */}
+      <TaskList />
     </>
   );
 }
