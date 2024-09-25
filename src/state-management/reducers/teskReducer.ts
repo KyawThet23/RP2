@@ -10,7 +10,7 @@ interface Delete {
   taskId : number;
 }
 
-type TaskAction = ADD | Delete
+export type TaskAction = ADD | Delete
 
 const taskReducer = (task: Task[] , action : TaskAction) : Task[] => {
 
