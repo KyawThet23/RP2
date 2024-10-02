@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import TasksContext from "./contexts/taskContext";
+import useTasks from "./hooks/useTasks";
 
 
 export interface Task {
@@ -9,7 +8,7 @@ export interface Task {
 
 const TaskList = () => {
 
-  const { tasks , dispatch } = useContext(TasksContext);
+  const { tasks , dispatch } = useTasks();
 
   return (
     <>
