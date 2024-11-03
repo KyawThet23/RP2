@@ -1,5 +1,8 @@
 
 const HomePage = () => {
+
+  // throw new Error('Something failed!!!');
+
   return (
     <>
       <p>
